@@ -39,4 +39,12 @@
         <url-pattern>/quick</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>mergeSort</servlet-name>
+        <servlet-class>org.example.controller.MergeSortController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mergeSort</servlet-name>
+        <url-pattern>/merge</url-pattern>
+    </servlet-mapping>
 </web-app>

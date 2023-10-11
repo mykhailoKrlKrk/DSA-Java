@@ -1,11 +1,15 @@
 package org.example.algorithm.impl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import org.example.algorithm.MergeSort;
 
 public class MergeSortImpl implements MergeSort {
+    private final List<int[]> intermediateIterations = new ArrayList<>();
+
     @Override
-    public void mergeSort(int[] a, int left, int right)
-    {
+    public void mergeSort(int[] a, int left, int right) {
         int mid;
         if(left < right)
         {
@@ -16,51 +20,54 @@ public class MergeSortImpl implements MergeSort {
             merge(a, left, mid, right);
         }
     }
+
     @Override
-    public void merge(int[] arr, int left, int mid, int right)
-    {
+    public void merge(int[] inputArray, int left, int mid, int right) {
         int i, j, k;
-        int n1 = mid - left + 1;
-        int n2 = right - mid;
+        int rightSize = mid - left + 1;
+        int leftSize = right - mid;
 
-        int[] L = new int[n1];
-        int[] R = new int[n2];
+        int[] leftHalf = new int[rightSize];
+        int[] rightHalf = new int[leftSize];
 
-        // Copying data to temp arrays L[] and R[]
-        for (i = 0; i < n1; i++)
-            L[i] = arr[left + i];
-        for (j = 0; j < n2; j++)
-            R[j] = arr[mid + 1 + j];
+        for (i = 0; i < rightSize; i++)
+            leftHalf[i] = inputArray[left + i];
+        for (j = 0; j < leftSize; j++)
+            rightHalf[j] = inputArray[mid + 1 + j];
 
-        // here we merge the temp arrays back into arr[l..r]
-        i = 0; // Starting index of L[i]
+        i = 0;
         j = 0;
         k = left;
 
-        while (i < n1 && j < n2)
+        while (i < rightSize && j < leftSize)
         {
-            // place the smaller item at arr[k] pos
-            if (L[i] <= R[j]) {
-                arr[k] = L[i];
+            if (leftHalf[i] <= rightHalf[j]) {
+                inputArray[k] = leftHalf[i];
                 i++;
             }
             else {
-                arr[k] = R[j];
+                inputArray[k] = rightHalf[j];
                 j++;
             }
             k++;
+            int[] arrCopy = Arrays.copyOf(inputArray, inputArray.length);
+            intermediateIterations.add(arrCopy);
         }
-        // Copy the remaining elements of L[], if any
-        while (i < n1) {
-            arr[k] = L[i];
+        while (i < rightSize) {
+            inputArray[k] = leftHalf[i];
             i++;
             k++;
         }
-        // Copy the remaining elements of R[], if any
-        while (j < n2) {
-            arr[k] = R[j];
+        while (j < leftSize) {
+            inputArray[k] = rightHalf[j];
             j++;
             k++;
         }
+        int[] arrCopy = Arrays.copyOf(inputArray, inputArray.length);
+        intermediateIterations.add(arrCopy);
+    }
+
+    public List<int[]> getIntermediateIterations() {
+        return intermediateIterations;
     }
 }

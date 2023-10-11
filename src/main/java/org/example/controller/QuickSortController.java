@@ -16,7 +16,7 @@ public class QuickSortController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/matrixResult.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/quickSort.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -41,7 +41,7 @@ public class QuickSortController extends HttpServlet {
 
         request.setAttribute("sortedMatrix", matrix);
         request.setAttribute("iterations", iterations);
-        request.getRequestDispatcher("/WEB-INF/views/matrixResult.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/quickSort.jsp").forward(request, response);
     }
 
 }

@@ -16,7 +16,7 @@ public class SortingController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/selection.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/selectionSort.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -29,6 +29,6 @@ public class SortingController extends HttpServlet {
         request.setAttribute("products", products);
         request.setAttribute("result", sortedAndFilteredProducts);
 
-        request.getRequestDispatcher("/WEB-INF/views/selection.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/selectionSort.jsp").forward(request, response);
     }
 }

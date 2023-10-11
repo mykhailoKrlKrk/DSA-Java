@@ -7,15 +7,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.example.algorithm.ShallSort;
-import org.example.algorithm.impl.ShellSortImpl;
+import org.example.algorithm.MergeSort;
+import org.example.algorithm.impl.MergeSortImpl;
 
-public class ShellSortController extends HttpServlet {
-    private final ShallSort shallSort = new ShellSortImpl();
+public class MergeSortController extends HttpServlet {
+    private final MergeSort mergeSort = new MergeSortImpl();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/shellSort.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/mergeSort.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,11 +25,14 @@ public class ShellSortController extends HttpServlet {
                 .toArray();
 
         int[] inputArrayCopy = Arrays.copyOf(inputArray, inputArray.length);
-        List<int[]> ints = shallSort.shallSort(inputArray);
+        mergeSort.mergeSort(inputArray, 0, inputArray.length -1);
 
-        request.setAttribute("inputArray", inputArrayCopy);
-        request.setAttribute("iterations", ints);
+        List<int[]> intermediateIterations = ((MergeSortImpl) mergeSort).getIntermediateIterations();
 
-        request.getRequestDispatcher("/WEB-INF/views/shellSort.jsp").forward(request, response);
+        request.setAttribute("inputArray", Arrays.toString(inputArrayCopy));
+        request.setAttribute("sortedArray", Arrays.toString(inputArray));
+        request.setAttribute("intermediateIterations", intermediateIterations);
+
+        request.getRequestDispatcher("/WEB-INF/views/mergeSort.jsp").forward(request, response);
     }
 }
