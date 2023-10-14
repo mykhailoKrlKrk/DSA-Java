@@ -14,31 +14,38 @@ public class MergeSortImpl implements MergeSort {
         if (left < right) {
             mid = (left + right) / 2;
 
+            // recursive calls to sort first half and second half sub-arrays
             mergeSort(a, left, mid);
             mergeSort(a, mid + 1, right);
             merge(a, left, mid, right);
         }
     }
 
+    // after sorting this function merge the array
     @Override
     public void merge(int[] inputArray, int left, int mid, int right) {
         int i, j, k;
         int rightSize = mid - left + 1;
         int leftSize = right - mid;
 
+        // create temp arrays to store left and right sub-arrays
         int[] leftHalf = new int[rightSize];
         int[] rightHalf = new int[leftSize];
 
+        // Copying data to temp arrays L[] and R[]
         for (i = 0; i < rightSize; i++)
             leftHalf[i] = inputArray[left + i];
         for (j = 0; j < leftSize; j++)
             rightHalf[j] = inputArray[mid + 1 + j];
 
-        i = 0;
-        j = 0;
-        k = left;
+        // here we merge the temp arrays back into arr[l..r]
+        i = 0; // Starting index of L[i]
+        j = 0; // Starting index of R[i]
+        k = left; // Starting index of merged sub-array
 
         while (i < rightSize && j < leftSize) {
+
+            // place the smaller item at arr[k] pos
             if (leftHalf[i] <= rightHalf[j]) {
                 inputArray[k] = leftHalf[i];
                 i++;
@@ -50,11 +57,13 @@ public class MergeSortImpl implements MergeSort {
             int[] arrCopy = Arrays.copyOf(inputArray, inputArray.length);
             intermediateIterations.add(arrCopy);
         }
+        // Copy the remaining elements of L[], if any
         while (i < rightSize) {
             inputArray[k] = leftHalf[i];
             i++;
             k++;
         }
+        // Copy the remaining elements of R[], if any
         while (j < leftSize) {
             inputArray[k] = rightHalf[j];
             j++;
@@ -66,42 +75,5 @@ public class MergeSortImpl implements MergeSort {
 
     public List<int[]> getIntermediateIterations() {
         return intermediateIterations;
-    }
-
-    public int[] processAndSortArray(int[] inputArray) {
-        int[] counts = new int[inputArray.length];
-        Arrays.fill(counts, 0);
-
-        for (int i = 0; i < inputArray.length; i++) {
-            for (int k : inputArray) {
-                if (inputArray[i] == k) {
-                    counts[i]++;
-                }
-            }
-        }
-
-        int mode = inputArray[0];
-        int modeCount = counts[0];
-        for (int i = 1; i < inputArray.length; i++) {
-            if (counts[i] > modeCount) {
-                mode = inputArray[i];
-                modeCount = counts[i];
-            }
-        }
-
-        List<Integer> modifiedList = new ArrayList<>();
-        for (int value : inputArray) {
-            if (value != mode) {
-                modifiedList.add(value);
-            }
-        }
-
-        int[] modifiedArray = new int[modifiedList.size()];
-        for (int i = 0; i < modifiedList.size(); i++) {
-            modifiedArray[i] = modifiedList.get(i);
-        }
-
-        mergeSort(modifiedArray, 0, modifiedArray.length - 1);
-        return modifiedArray;
     }
 }
