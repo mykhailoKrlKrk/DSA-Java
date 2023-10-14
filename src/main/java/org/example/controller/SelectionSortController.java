@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.example.algorithm.SelectionSort;
 import org.example.algorithm.impl.SelectionSortImpl;
 
-public class SortingController extends HttpServlet {
+public class SelectionSortController extends HttpServlet {
     private final SelectionSort selectionSort = new SelectionSortImpl();
 
 
@@ -21,14 +21,18 @@ public class SortingController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String productData = request.getParameter("productData");
+        String requestParameter = request.getParameter("inputArray");
 
-        List<String> products = Arrays.asList(productData.split("\n"));
-        List<String> sortedAndFilteredProducts = selectionSort.sortAndFilterProducts(products);
+        String[] inputArrayString = requestParameter.split(",");
+        int[] inputArray = new int[inputArrayString.length];
+        for (int i = 0; i < inputArrayString.length; i++) {
+            inputArray[i] = Integer.parseInt(inputArrayString[i]);
+        }
+        int[] inputArrayCopy = Arrays.copyOf(inputArray, inputArray.length);
+        List<int[]> iterations = selectionSort.selectionSort(inputArray);
 
-        request.setAttribute("products", products);
-        request.setAttribute("result", sortedAndFilteredProducts);
-
+        request.setAttribute("inputArray", inputArrayCopy);
+        request.setAttribute("iterations", iterations);
         request.getRequestDispatcher("/WEB-INF/views/selectionSort.jsp").forward(request, response);
     }
 }
