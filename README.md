@@ -61,9 +61,27 @@ Quick Sort is an efficient and widely used sorting algorithm based on the divide
 📈 Efficient Use Cases:
 
 - Average and Best-Case Time: Quick Sort is highly efficient, especially in the average and best-case scenarios, making it a popular choice for general-purpose sorting.
-- Memory Efficiency: Quick Sort is an in-place sorting algorithm, requiring very little additional memory.
+- Memory Efficiency: Quick Sort is an in-place sorting algorithm, requires very little additional memory.
 
 📉 Inefficient Use Cases:
 
 - Worst-Case Time Complexity: In the worst-case scenario, particularly when the array is already sorted or nearly sorted, Quick Sort's time complexity can degrade to O(n^2). However, this is rare in practice.
 - Not Stable: Quick Sort is not a stable sorting algorithm, meaning the order of equal elements may change.
+
+## Merge Sort
+Merge Sort is an efficient sorting algorithm that follows the divide-and-conquer approach. It divides the array into smaller sub-arrays, sorts them, and then merges them back into a fully sorted array.
+
+### 🧾 Step-by-step Explanation
+- Divide: Divide the given array into two halves.
+- Conquer: Recursively sort each sub-array.
+- Merge: Merge the sorted sub-arrays to produce a sorted array.
+
+📈 Efficient Use Cases:
+
+- General Efficiency: Merge Sort is efficient for general-purpose sorting, offering consistent performance across various datasets.
+- Stable Sorting: Merge Sort is a stable sorting algorithm, ensuring that the relative order of equal elements is preserved.
+
+📉 Inefficient Use Cases:
+
+- In-place Sorting: Merge Sort is not an in-place sorting algorithm, which means it requires additional memory proportional to the size of the input array.
+- Constant Overhead: The recursive nature of Merge Sort involves function calls and additional memory usage, which may not be optimal for small arrays or systems with limited memory.
