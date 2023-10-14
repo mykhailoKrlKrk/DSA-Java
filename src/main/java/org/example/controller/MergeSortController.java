@@ -25,13 +25,12 @@ public class MergeSortController extends HttpServlet {
                 .toArray();
 
         int[] inputArrayCopy = Arrays.copyOf(inputArray, inputArray.length);
-        mergeSort.processAndSortArray(inputArray);
+        mergeSort.mergeSort(inputArray, 0, inputArray.length - 1);
 
         List<int[]> intermediateIterations = ((MergeSortImpl) mergeSort).getIntermediateIterations();
 
         request.setAttribute("inputArray", Arrays.toString(inputArrayCopy));
-        request.setAttribute("sortedArray", Arrays.toString(inputArray));
-        request.setAttribute("intermediateIterations", intermediateIterations);
+        request.setAttribute("iterations", intermediateIterations);
 
         request.getRequestDispatcher("/WEB-INF/views/mergeSort.jsp").forward(request, response);
     }
