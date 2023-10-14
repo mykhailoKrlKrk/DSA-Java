@@ -49,7 +49,6 @@
             color: #555;
         }
 
-        /* Додані стилі для таблиці */
         table {
             width: 100%;
             border-collapse: collapse;

@@ -53,7 +53,6 @@ public class QuickSortImpl implements QuickSort {
         for (int i = 0; i < rows; i++) {
             System.arraycopy(matrix[i], 0, copy[i], 0, cols);
         }
-
         return copy;
     }
 

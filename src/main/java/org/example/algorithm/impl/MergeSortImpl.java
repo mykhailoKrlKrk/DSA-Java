@@ -11,8 +11,7 @@ public class MergeSortImpl implements MergeSort {
     @Override
     public void mergeSort(int[] a, int left, int right) {
         int mid;
-        if(left < right)
-        {
+        if (left < right) {
             mid = (left + right) / 2;
 
             mergeSort(a, left, mid);
@@ -39,13 +38,11 @@ public class MergeSortImpl implements MergeSort {
         j = 0;
         k = left;
 
-        while (i < rightSize && j < leftSize)
-        {
+        while (i < rightSize && j < leftSize) {
             if (leftHalf[i] <= rightHalf[j]) {
                 inputArray[k] = leftHalf[i];
                 i++;
-            }
-            else {
+            } else {
                 inputArray[k] = rightHalf[j];
                 j++;
             }
@@ -69,5 +66,42 @@ public class MergeSortImpl implements MergeSort {
 
     public List<int[]> getIntermediateIterations() {
         return intermediateIterations;
+    }
+
+    public int[] processAndSortArray(int[] inputArray) {
+        int[] counts = new int[inputArray.length];
+        Arrays.fill(counts, 0);
+
+        for (int i = 0; i < inputArray.length; i++) {
+            for (int k : inputArray) {
+                if (inputArray[i] == k) {
+                    counts[i]++;
+                }
+            }
+        }
+
+        int mode = inputArray[0];
+        int modeCount = counts[0];
+        for (int i = 1; i < inputArray.length; i++) {
+            if (counts[i] > modeCount) {
+                mode = inputArray[i];
+                modeCount = counts[i];
+            }
+        }
+
+        List<Integer> modifiedList = new ArrayList<>();
+        for (int value : inputArray) {
+            if (value != mode) {
+                modifiedList.add(value);
+            }
+        }
+
+        int[] modifiedArray = new int[modifiedList.size()];
+        for (int i = 0; i < modifiedList.size(); i++) {
+            modifiedArray[i] = modifiedList.get(i);
+        }
+
+        mergeSort(modifiedArray, 0, modifiedArray.length - 1);
+        return modifiedArray;
     }
 }

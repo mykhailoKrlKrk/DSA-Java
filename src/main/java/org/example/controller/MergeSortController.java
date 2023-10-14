@@ -25,7 +25,7 @@ public class MergeSortController extends HttpServlet {
                 .toArray();
 
         int[] inputArrayCopy = Arrays.copyOf(inputArray, inputArray.length);
-        mergeSort.mergeSort(inputArray, 0, inputArray.length -1);
+        mergeSort.processAndSortArray(inputArray);
 
         List<int[]> intermediateIterations = ((MergeSortImpl) mergeSort).getIntermediateIterations();
 
