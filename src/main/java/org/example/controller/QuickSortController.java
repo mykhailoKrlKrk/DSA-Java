@@ -2,6 +2,7 @@ package org.example.controller;
 
 import java.io.IOException;
 
+import java.util.Arrays;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,26 +22,20 @@ public class QuickSortController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String matrixInput = request.getParameter("matrix");
-        String[] rows = matrixInput.split(";");
+        String[] inputArrayStr = request.getParameter("inputArray").split(",");
+        int[] inputArray = Arrays.stream(inputArrayStr)
+                .mapToInt(Integer::parseInt)
+                .toArray();
 
-        int numRows = rows.length;
-        int numCols = rows[0].split(",").length;
-        double[][] matrix = new double[numRows][numCols];
 
-        for (int i = 0; i < numRows; i++) {
-            String[] rowValues = rows[i].split(",");
-            for (int j = 0; j < numCols; j++) {
-                matrix[i][j] = Double.parseDouble(rowValues[j]);
-            }
-        }
 
-        quickSort.quickSortColumns(matrix, 0, numCols - 1);
+        int[] inputArrayCopy = Arrays.copyOf(inputArray, inputArray.length);
+        quickSort.quickSort(inputArray, 0, inputArray.length - 1);
+        List<int[]> iterations = quickSort.getIterations();
 
-        List<double[][]> iterations = ((QuickSortImpl) quickSort).getIterations();
-
-        request.setAttribute("sortedMatrix", matrix);
+        request.setAttribute("inputArray", inputArrayCopy);
         request.setAttribute("iterations", iterations);
+
         request.getRequestDispatcher("/WEB-INF/views/quickSort.jsp").forward(request, response);
     }
 

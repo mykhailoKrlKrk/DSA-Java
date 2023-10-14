@@ -3,11 +3,11 @@ package org.example.algorithm;
 import java.util.List;
 
 public interface QuickSort {
-    void quickSortColumns(double[][] matrix, int left, int right);
+    void quickSort(int[] inputArray, int left, int right);
 
-    int partition(double[][] matrix, int left, int right);
+    int partition(int[] arr, int low, int high);
 
-    void swapColumns(double[][] matrix, int column1, int column2);
+    void swap(int[] arr, int i, int j);
 
-
+    List<int[]> getIterations();
 }
