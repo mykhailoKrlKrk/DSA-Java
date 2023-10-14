@@ -1,45 +1,50 @@
-<%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Quick Sort</title>
+    <title>Shallow Sort Results</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            padding: 20px;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
         }
-        h1 {
+        .input-block, .output-block {
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            background-color: #fff;
+        }
+        h2 {
+            font-size: 24px;
+            margin-top: 0;
             color: #333;
         }
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
-        #matrix {
-            width: 100%;
-            padding: 10px;
-        }
         input[type="submit"] {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
+            background-color: #007bff;
+            color: #fff;
             border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
             cursor: pointer;
         }
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: #0056b3;
         }
         table {
-            margin-top: 20px;
             width: 100%;
             border-collapse: collapse;
+            margin-top: 10px;
         }
         th, td {
-            padding: 10px;
             border: 1px solid #ddd;
+            padding: 8px;
             text-align: left;
         }
         th {
@@ -48,52 +53,48 @@
     </style>
 </head>
 <body>
-<h1>Quick Sort Matrix</h1>
+<div class="input-block">
+    <h2>Enter an array of integers (comma-separated):</h2>
+    <form action="${pageContext.request.contextPath}/quick" method="post">
+        <textarea name="inputArray" rows="5" cols="50"></textarea><br>
+        <input type="submit" value="Sort">
+    </form>
+</div>
 
-<form action="/quick" method="post">
-    <label for="matrix">Enter matrix (semicolon-separated rows, comma-separated values):</label><br>
-    <textarea id="matrix" name="matrix" rows="5" cols="40">2,3,0;1,3,0;1,2.4;</textarea><br><br>
-    <input type="submit" value="Sort">
-</form>
-
-<%
-    double[][] sortedMatrix = (double[][]) request.getAttribute("sortedMatrix");
-    List<double[][]> iterations = (List<double[][]>) request.getAttribute("iterations");
-
-    if (sortedMatrix != null) {
-%>
-<h3>Sorted Matrix:</h3>
-<table border="1">
-    <% for (double[] matrixRow : sortedMatrix) { %>
-    <tr>
-        <% for (double element : matrixRow) { %>
-        <td><%= element %></td>
-        <% } %>
-    </tr>
-    <% } %>
-</table>
-<%
-    }
-
-    if (iterations != null && !iterations.isEmpty()) {
-        int iterationNumber = 1;
-        for (double[][] iteration : iterations) {
-%>
-<h3>Iteration <%= iterationNumber %>:</h3>
-<table border="1">
-    <% for (double[] matrixRow : iteration) { %>
-    <tr>
-        <% for (double element : matrixRow) { %>
-        <td><%= element %></td>
-        <% } %>
-    </tr>
-    <% } %>
-</table>
-<%
-            iterationNumber++;
-        }
-    }
-%>
-
+<c:if test="${not empty inputArray}">
+    <div class="output-block">
+        <h2>Results:</h2>
+        <p>Input Array:</p>
+        <table>
+            <tr>
+                <th>Index</th>
+                <th>Value</th>
+            </tr>
+            <c:forEach items="${inputArray}" var="element" varStatus="status">
+                <tr>
+                    <td>${status.index}</td>
+                    <td>${element}</td>
+                </tr>
+            </c:forEach>
+        </table>
+        <p>Iteration Details:</p>
+        <table>
+            <tr>
+                <th>Iteration</th>
+                <th>Array</th>
+            </tr>
+            <c:forEach items="${iterations}" var="iteration" varStatus="status">
+                <tr>
+                    <td>Iteration ${status.index + 1}</td>
+                    <td>
+                        <c:forEach items="${iteration}" var="element">
+                            ${element},
+                        </c:forEach>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+</c:if>
 </body>
 </html>
