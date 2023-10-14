@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Sorting and Filtering Products</title>
+    <title>Shallow Sort Results</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,10 +12,6 @@
             color: #333;
             margin: 0;
             padding: 0;
-        }
-        form {
-            margin: 20px;
-            text-align: center;
         }
         .input-block, .output-block {
             margin: 20px auto;
@@ -41,47 +37,63 @@
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
         }
-        li {
-            margin: 5px 0;
-            background-color: #f9f9f9;
-            padding: 10px;
-            border-radius: 5px;
+        th, td {
             border: 1px solid #ddd;
-            color: #333;
+            padding: 8px;
+            text-align: left;
         }
-        li:nth-child(odd) {
-            background-color: #e5e5e5;
+        th {
+            background-color: #f2f2f2;
         }
     </style>
 </head>
 <body>
 <div class="input-block">
-    <h2>Enter a list of products:</h2>
+    <h2>Enter an array of integers (comma-separated):</h2>
     <form action="${pageContext.request.contextPath}/selection" method="post">
-        <textarea name="productData" rows="5" cols="50"></textarea><br>
-        <input type="submit" value="Sort and Filter">
+        <textarea name="inputArray" rows="5" cols="50"></textarea><br>
+        <input type="submit" value="Sort">
     </form>
 </div>
 
-<c:if test="${not empty result}">
+<c:if test="${not empty inputArray}">
     <div class="output-block">
-        <h2>Result:</h2>
-        <p>Array before sorting:</p>
-        <ul>
-            <c:forEach items="${products}" var="product">
-                <li>${product}</li>
+        <h2>Results:</h2>
+        <p>Input Array:</p>
+        <table>
+            <tr>
+                <th>Index</th>
+                <th>Value</th>
+            </tr>
+            <c:forEach items="${inputArray}" var="element" varStatus="status">
+                <tr>
+                    <td>${status.index}</td>
+                    <td>${element}</td>
+                </tr>
             </c:forEach>
-        </ul>
-        <p>Result:</p>
-        <ul>
-            <c:forEach items="${result}" var="product">
-                <li>${product}</li>
+        </table>
+        <p>Iteration Details:</p>
+        <table>
+            <tr>
+                <th>Iteration</th>
+                <th>Array</th>
+            </tr>
+            <c:forEach items="${iterations}" var="iteration" varStatus="status">
+                <tr>
+                    <td>Iteration ${status.index + 1}</td>
+                    <td>
+                        <c:forEach items="${iteration}" var="element">
+                            ${element},
+                        </c:forEach>
+                    </td>
+                </tr>
             </c:forEach>
-        </ul>
+        </table>
     </div>
 </c:if>
 </body>
