@@ -1,35 +1,50 @@
 package org.example.algorithm.impl;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.example.algorithm.SelectionSort;
 
 public class SelectionSortImpl implements SelectionSort {
 
     @Override
-    public List<int[]> selectionSort(int[] inputArray) {
-        //Store iterations of sorting
-        List<int[]> iterations = new ArrayList<>();
-        int arrayLength = inputArray.length;
-
-        // One by one move boundary of unsorted subarray
-        for (int i = 0; i < arrayLength - 1; i++) {
-            // Adding a copy of the array
-            iterations.add(Arrays.copyOf(inputArray, inputArray.length));
-            // Find the minimum element in unsorted array
+    public void selectionSort(List<String> list) {
+        int n = list.size();
+        for (int i = 0; i < n - 1; i++) {
             int minIndex = i;
-            for (int j = i + 1; j < arrayLength; j++)
-                if (inputArray[j] < inputArray[minIndex])
+            for (int j = i + 1; j < n; j++) {
+                if (list.get(j).compareTo(list.get(minIndex)) < 0) {
                     minIndex = j;
-
-            // Swap the found minimum element with the element at index [i]
-            int temp = inputArray[minIndex];
-            inputArray[minIndex] = inputArray[i];
-            inputArray[i] = temp;
+                }
+            }
+            if (minIndex != i) {
+                String temp = list.get(i);
+                list.set(i, list.get(minIndex));
+                list.set(minIndex, temp);
+            }
         }
-        // Adding a copy of the array after the last iteration
-        iterations.add(Arrays.copyOf(inputArray, inputArray.length));
-        return iterations;
+    }
+
+    @Override
+    public List<String> sortAndFilterProducts(List<String> products) {
+        double total = 0;
+        for (String product : products) {
+            String[] parts = product.split(":");
+            double price = Double.parseDouble(parts[1].trim());
+            total += price;
+        }
+        double averagePrice = total / products.size();
+
+        List<String> filteredProducts = new ArrayList<>();
+        for (String product : products) {
+            String[] parts = product.split(":");
+            String name = parts[0].trim();
+            double price = Double.parseDouble(parts[1].trim());
+            if (price <= averagePrice) {
+                filteredProducts.add(name + ": " + price);
+            }
+        }
+
+        selectionSort(filteredProducts);
+        return filteredProducts;
     }
 }

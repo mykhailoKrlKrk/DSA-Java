@@ -15,7 +15,7 @@
 
     <servlet>
         <servlet-name>sortingController</servlet-name>
-        <servlet-class>org.example.controller.SelectionSortController</servlet-class>
+        <servlet-class>org.example.controller.SortingController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>sortingController</servlet-name>
