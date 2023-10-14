@@ -13,7 +13,6 @@ import org.example.algorithm.impl.SelectionSortImpl;
 public class SelectionSortController extends HttpServlet {
     private final SelectionSort selectionSort = new SelectionSortImpl();
 
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/views/selectionSort.jsp").forward(request, response);
@@ -21,13 +20,12 @@ public class SelectionSortController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String requestParameter = request.getParameter("inputArray");
+        String[] inputArrayString = request.getParameter("inputArray").split(",");
 
-        String[] inputArrayString = requestParameter.split(",");
-        int[] inputArray = new int[inputArrayString.length];
-        for (int i = 0; i < inputArrayString.length; i++) {
-            inputArray[i] = Integer.parseInt(inputArrayString[i]);
-        }
+        int[] inputArray = Arrays.stream(inputArrayString)
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
         int[] inputArrayCopy = Arrays.copyOf(inputArray, inputArray.length);
         List<int[]> iterations = selectionSort.selectionSort(inputArray);
 

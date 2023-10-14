@@ -7,28 +7,29 @@ import org.example.algorithm.ShallSort;
 
 public class ShellSortImpl implements ShallSort {
     @Override
-    public List<int[]> shallSort(int[] numbers) {
+    public List<int[]> shallSort(int[] inputArray) {
+        //Store the sorting iterations
         List<int[]> iterations = new ArrayList<>();
 
-        for (int i = 0; i < numbers.length; i++) {
-            if (numbers[i] % 2 == 0) {
-                int value = numbers[i];
-                numbers[i] = (int) (Math.sqrt(Math.abs(value - 10)));
-            }
-        }
-        iterations.add(Arrays.copyOf(numbers, numbers.length));
-
-        int n = numbers.length;
-        for (int gap = n / 2; gap > 0; gap /= 2) {
-            for (int i = gap; i < n; i++) {
-                int key = numbers[i];
+        int arrayLength = inputArray.length;
+        // Start with a big gap, then reduce the gap
+        for (int gap = arrayLength / 2; gap > 0; gap /= 2) {
+            for (int i = gap; i < arrayLength; i++) {
+                // add a[i] to the elements that have been gap
+                // sorted save a[i] in temp and make a hole at
+                // position i
+                int temp = inputArray[i];
+                // shift earlier gap-sorted elements up until
+                // the correct location for a[i] is found
                 int j = i;
-                while (j >= gap && numbers[j - gap] > key) {
-                    numbers[j] = numbers[j - gap];
+                while (j >= gap && inputArray[j - gap] > temp) {
+                    inputArray[j] = inputArray[j - gap];
                     j -= gap;
                 }
-                numbers[j] = key;
-                iterations.add(Arrays.copyOf(numbers, numbers.length));
+                // put temp (the original a[i]) in its correct
+                // location
+                inputArray[j] = temp;
+                iterations.add(Arrays.copyOf(inputArray, inputArray.length));
             }
         }
         return iterations;
