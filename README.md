@@ -1,5 +1,6 @@
 # Sorting Algorithms  📊
 ---
+![Java Badge](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white) ![Tomcat Badge](https://img.shields.io/badge/Apache%20Tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=black)
 
 This project provides an example of the implementation of sorting algorithms in Java with a step-by-step description of execution and analysis of the efficiency of the algorithm under various conditions.
 In order to display the results, `Tomcat`, `Servlets`, and `JSP` technologies are utilized in this context.
@@ -28,3 +29,23 @@ Inefficient Use Cases:
 - Real-Time Systems: In real-time systems where speed is critical, selection sort's time complexity makes it unsuitable.
 
 - Performance Optimization Required: If the goal is to achieve the best sorting performance, more efficient algorithms like quick sort or merge sort should be chosen over selection sort.
+
+## Shell Sort
+---
+Shell Sort is an efficient sorting algorithm that extends the principles of insertion sort by allowing the exchange of elements that are far apart. It begins by sorting pairs of elements far apart from each other and progressively reduces the gap between elements to sort the entire array.
+
+### 🧾 Step-by-step Explanation
+- Define the Gap Sequence: Choose a sequence of gap values to determine the intervals for comparing and swapping elements.
+- Start with the Widest Gap: Begin by sorting elements that are "gap" distance apart using insertion sort.
+- Reduce the Gap and Repeat: Gradually reduce the gap, and for each gap, perform an insertion sort on the elements.
+- Continue Until Gap is 1: Repeat the process until the gap becomes 1, at which point a final insertion sort is performed to ensure the entire array is sorted.
+
+
+Efficient Use Cases:
+- Medium to Large Datasets: Shell sort is efficient for medium-sized datasets and can outperform simple algorithms like bubble sort and selection sort.
+- Varying Gap Sequences: Shell sort's efficiency can be optimized by choosing an appropriate gap sequence based on the dataset.
+
+
+Inefficient Use Cases:
+- Already Sorted Data: Shell sort's performance degrades if the data is already mostly sorted, as its efficiency relies on reducing the gap between elements.
+- Not the Fastest Algorithm: While efficient, Shell sort is generally outperformed by more advanced algorithms like quick sort and merge sort for larger datasets.
