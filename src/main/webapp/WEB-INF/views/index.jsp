@@ -53,6 +53,7 @@
     <tr><td><a href="${pageContext.request.contextPath}/shell">Use Shell Sort</a></td></tr>
     <tr><td><a href="${pageContext.request.contextPath}/quick">Use Quick Sort</a></td></tr>
     <tr><td><a href="${pageContext.request.contextPath}/merge">Use Merge Sort</a></td></tr>
+    <tr><td><a href="${pageContext.request.contextPath}/counting">Use Counting Sort</a></td></tr>
 </table>
 </body>
 </html>
