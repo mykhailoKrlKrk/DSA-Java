@@ -85,3 +85,23 @@ Merge Sort is an efficient sorting algorithm that follows the divide-and-conquer
 
 - In-place Sorting: Merge Sort is not an in-place sorting algorithm, which means it requires additional memory proportional to the size of the input array.
 - Constant Overhead: The recursive nature of Merge Sort involves function calls and additional memory usage, which may not be optimal for small arrays or systems with limited memory.
+
+## Counting Sort
+Counting Sort is a sorting algorithm that operates by counting the occurrences of each element and using arithmetic to determine their positions in the sorted array.
+
+🧾 Step-by-step Explanation
+- Counting: Count the occurrences of each element in the given array.
+- Positioning: Calculate the positions of elements based on their counts.
+- Sorting: Generate the sorted array based on the calculated positions.
+
+📈 Efficient Use Cases:
+
+- Specific Range of Values: Counting Sort is efficient when the range of values in the array is relatively small compared to the size of the array.
+- Integer Sorting: It is highly efficient for sorting integers within a specific range.
+- Counting Frequencies: Useful for frequency counting applications, such as finding the frequency of elements in an array.
+
+📉 Inefficient Use Cases:
+
+- Sparse Data: Counting Sort becomes inefficient when the range of values is significantly larger than the size of the array.
+- Non-integer Data: Not suitable for sorting non-integer or non-numeric data.
+- Memory Usage: Requires additional memory proportional to the range of values, which can be inefficient for large ranges.
