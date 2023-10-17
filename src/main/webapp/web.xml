@@ -47,4 +47,13 @@
         <servlet-name>mergeSort</servlet-name>
         <url-pattern>/merge</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>countingSort</servlet-name>
+        <servlet-class>org.example.controller.CountingSortController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>countingSort</servlet-name>
+        <url-pattern>/counting</url-pattern>
+    </servlet-mapping>
 </web-app>
