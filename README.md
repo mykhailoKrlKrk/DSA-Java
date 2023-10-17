@@ -89,7 +89,7 @@ Merge Sort is an efficient sorting algorithm that follows the divide-and-conquer
 ## Counting Sort
 Counting Sort is a sorting algorithm that operates by counting the occurrences of each element and using arithmetic to determine their positions in the sorted array.
 
-🧾 Step-by-step Explanation
+### 🧾 Step-by-step Explanation
 - Counting: Count the occurrences of each element in the given array.
 - Positioning: Calculate the positions of elements based on their counts.
 - Sorting: Generate the sorted array based on the calculated positions.
