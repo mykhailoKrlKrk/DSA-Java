@@ -1,4 +1,4 @@
-# Sorting Algorithms  📊
+# Data structures and Algorithms in Java  📊
 ---
 ![Java Badge](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white) ![Tomcat Badge](https://img.shields.io/badge/Apache%20Tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=black)
 
