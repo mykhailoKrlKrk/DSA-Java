@@ -6,7 +6,7 @@
 
     <servlet>
         <servlet-name>index</servlet-name>
-        <servlet-class>org.example.controller.AlgorithmController</servlet-class>
+        <servlet-class>org.example.controller.WelcomeController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
@@ -15,7 +15,7 @@
 
     <servlet>
         <servlet-name>sortingController</servlet-name>
-        <servlet-class>org.example.controller.SelectionSortController</servlet-class>
+        <servlet-class>org.example.controller.sorting.SelectionSortController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>sortingController</servlet-name>
@@ -24,7 +24,7 @@
 
     <servlet>
         <servlet-name>shallowSort</servlet-name>
-        <servlet-class>org.example.controller.ShellSortController</servlet-class>
+        <servlet-class>org.example.controller.sorting.ShellSortController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>shallowSort</servlet-name>
@@ -32,7 +32,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>quickSort</servlet-name>
-        <servlet-class>org.example.controller.QuickSortController</servlet-class>
+        <servlet-class>org.example.controller.sorting.QuickSortController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>quickSort</servlet-name>
@@ -41,7 +41,7 @@
 
     <servlet>
         <servlet-name>mergeSort</servlet-name>
-        <servlet-class>org.example.controller.MergeSortController</servlet-class>
+        <servlet-class>org.example.controller.sorting.MergeSortController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>mergeSort</servlet-name>
@@ -50,10 +50,59 @@
 
     <servlet>
         <servlet-name>countingSort</servlet-name>
-        <servlet-class>org.example.controller.CountingSortController</servlet-class>
+        <servlet-class>org.example.controller.sorting.CountingSortController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>countingSort</servlet-name>
         <url-pattern>/counting</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>three</servlet-name>
+        <servlet-class>org.example.controller.datastructures.BinarySearchThreeController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>three</servlet-name>
+        <url-pattern>/three</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>kmpAlgorithm</servlet-name>
+        <servlet-class>org.example.controller.search.KMPAlgorithmController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>kmpAlgorithm</servlet-name>
+        <url-pattern>/kmpAlgorithm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>binarySearch</servlet-name>
+        <servlet-class>org.example.controller.search.BinarySearchController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>binarySearch</servlet-name>
+        <url-pattern>/binarySearch</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>boyerMoore</servlet-name>
+        <servlet-class>org.example.controller.search.BoyerMooreSearchController</servlet-class>
+    </servlet>
+
+
+    <servlet>
+        <servlet-name>stack</servlet-name>
+        <servlet-class>org.example.controller.datastructures.StackController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>stack</servlet-name>
+        <url-pattern>/stack</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>boyerMoore</servlet-name>
+        <url-pattern>/boyerMooreSearch</url-pattern>
+    </servlet-mapping>
+
 </web-app>
